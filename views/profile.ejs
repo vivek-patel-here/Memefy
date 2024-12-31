@@ -1,0 +1,17 @@
+<%- layout("./layouts/boilerplate.ejs")  %>
+<body>
+    <div class="profilebox">
+        <img src="<%= user.profile  %>" class="profile-Image">
+        <form action="/user/profile/<%= user._id %>" method="post" enctype="multipart/form-data">
+            <label for="profile" class="profile send"><div class="layer"></div>+ Upload Profile Image </label>
+            <input type="file" name="profile" id="profile" required>
+            <br>
+            <button class="send"><div class="layer"></div>Set as profile</button>
+        </form>
+        <p class="username"><%= user.username  %></p>
+        <p class="email"><%= user.email  %></p>
+    <form action="/user/<%= user._id%>?_method=DELETE" method="post"><button class="delete_btn">Delete Account</button></form>
+
+    </div>
+    
+</body>

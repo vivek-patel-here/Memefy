@@ -1,0 +1,24 @@
+<nav>
+  <a href="/chat">
+    <li>
+      <h1>Memestream<span class="green">.</span></h1>
+      <p>Share Laughs, Spark Connections!</p>
+    </li>
+  </a>
+
+  <div class="subnav">
+    <a href="/chat"><li>Chats</li></a>
+    <% if(!currentUser){ %>
+      <a href="/user/signup"><li>Sign Up</li></a>
+      <a href="/user/login"><li>LogIn</li></a>
+      <% }else{ %>
+        <a href="/user"><li>Users</li></a>
+      <i class="fa-solid fa-bars" id="fa-gear"></i>
+  </div>
+  <div class="setting hide">
+    <a href="/user/profile"><li>Profile</li></a>
+    <a href="/user/logout"><li>LogOut</li></a>
+  </div>
+  <% } %>
+</nav>
+

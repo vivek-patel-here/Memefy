@@ -1,0 +1,11 @@
+<%- layout("./layouts/boilerplate.ejs")  %>
+
+<body>
+    <form action="/user/signup" method="post" class="signup">
+        <h1>SIGN <span>UP</span></h1>
+        <input type="text" name="username" placeholder="Username must unique!" />
+        <input type="password" name="password" placeholder="Password must be strong" />
+        <input type="email" name="email" placeholder="Enter your Email" />
+        <button class="send"> <div class="layer"></div>Register &rarr;</button>
+    </form>
+</body>

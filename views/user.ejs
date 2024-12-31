@@ -1,0 +1,12 @@
+<%- layout("./layouts/boilerplate.ejs") %>
+<body>
+    <div class="user-page">
+        <% for(let U of users){ %>
+            <div class="user-card">
+                <img src="<%= U.profile  %>" class="user-img">
+                <p>Username :<%= U.username  %></p>
+                <p>Email : <%= U.email  %></p>
+            </div>
+            <% } %>
+    </div>
+</body>

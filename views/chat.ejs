@@ -74,7 +74,7 @@
       const socket =io();
       document.querySelector(".send-msg").addEventListener("click",()=>{
         let msg = document.querySelector("#chat").value;
-        socket.emit("new-msg",[msg,currentUser?'<%= currentUser.user %>':"Unknown"]);
+        socket.emit("new-msg",[msg,currentUser?currentUser.user:"Unknown"]);
       })
       socket.on("msg",(msg)=>{
         let newElem=document.createElement("div");

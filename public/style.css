@@ -197,6 +197,11 @@ nav>div{
     overflow-x: auto;
 }
 
+.guide::-webkit-scrollbar{
+    display:none;
+    appearance: none;
+}
+
 .guide>h2{
    margin: 0px 3vw;
     font-weight: 500;
@@ -236,8 +241,13 @@ nav>div{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+}
+
+.chat::-webkit-scrollbar{
+    display: none;
+    appearance: none;
 }
 
 .chat>.blur{
@@ -270,11 +280,11 @@ nav>div{
 
 #chat{
     border: 2px solid #00EB8F;
-    height: 20%;
+    min-height: 20%;
     border-radius: 20px;
     background-color: white;
     padding-left: 1vw;
-    width: 80%;
+    min-width: 80%;
     outline: #00EB8F;
 }
 
@@ -296,7 +306,8 @@ input[type="file"] {
     background-color:#00EB8F;
 }
 .send{
-    width: 7vw;
+    min-width:70px;
+    max-width: 7vw;
     min-height: 5vh;
     border: 1px solid #00EB8F;
     color: #00EB8F;
@@ -395,20 +406,21 @@ input[type="file"] {
     border-radius: 10px;
 }
 
+.set{
+    font-size:0.9rem;
+    min-width: 150px;
+}
 
 .profile{
+    min-width: 200px;
     height: 6vh;
-    width: 12vw;
     border: 1px solid #00EB8F;
     display: grid;
     place-items: center;
     border-radius: 25px;
 }
-.profilebox .send{
-    font-size: 1vw;
-}
 .delete_btn{
-    width: 9vw;
+    min-width: 12vw;
     height: 5vh;
     border-radius: 20px;
     color: red;

@@ -1,0 +1,49 @@
+/* For small screens */
+@media (max-width: 600px) {
+    nav{
+        padding-left:5px;
+        padding-right: 5px;
+    }
+    body {
+        font-size: 14px;
+    }
+    .meme-container {
+        flex-direction: column;
+    }
+    .guide>li{
+        margin-bottom: 10px;
+        border-bottom: 1px solid #00EB8F;
+    }
+}
+
+/* For medium screens */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    .meme-container {
+        flex-wrap: wrap;
+    }
+}
+
+/* For large screens */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+.meme-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.meme {
+    flex: 1 1 calc(33.333% - 10px); /* Adjust width for smaller screens */
+    max-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

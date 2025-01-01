@@ -3,10 +3,10 @@
     <div class="profilebox">
         <img src="<%= user.profile  %>" class="profile-Image">
         <form action="/user/profile/<%= user._id %>" method="post" enctype="multipart/form-data">
-            <label for="profile" class="profile send"><div class="layer"></div>+ Upload Profile Image </label>
+            <label for="profile" class="send profile"><div class="layer"></div>+ Upload Profile Image </label>
             <input type="file" name="profile" id="profile" required>
             <br>
-            <button class="send"><div class="layer"></div>Set as profile</button>
+            <button class="send set"><div class="layer"></div>Set as profile</button>
         </form>
         <p class="username"><%= user.username  %></p>
         <p class="email"><%= user.email  %></p>

@@ -1,60 +1,99 @@
-<%-layout("./layouts/boilerplate.ejs") %>
-<body>
-  <div class="meme">
-    <h2>Meme Box</h2>
-    <% for(let i of chats.reverse()) { %>
-    <div class="card">
-      <div class="card-header">
-        <img
-          class="avatar"
-          src="<%= i.postedBy.profile %>"
-          alt=""
-        />
-        <div class="username"><%= i.postedBy.username  %></div>
-      </div>
-      <div class="card-main">
-        <p class="User-msg"><%= i.chat %></p>
-        <img src="<%=i.image%>" alt="" class="meme-img">
+<%- layout("./layouts/boilerplate.ejs") %>
+  <body>
+    %>
+    <div class="boundary">
+      <h2>Meme Box</h2>
+      <div class="meme">
+        <% for(let i of chats.reverse()) { %>
+        <div class="card">
+          <div class="card-header">
+            <img class="avatar" src="<%= i.postedBy.profile %>" alt="" />
+            <div class="username"><%= i.postedBy.username %></div>
+          </div>
+          <div class="card-main">
+            <p class="User-msg"><%= i.chat %></p>
+            <img src="<%=i.image%>" alt="" class="meme-img" />
+          </div>
+        </div>
+        <%}%>
       </div>
     </div>
-    <%}%>
-  </div>
 
-  <div class="guide">
-    <% if(!currentUser){ %>
-    <li class="loginorsignup"><a href="/user/login"><span>login</span> </a>or <a href="/user/signup"><span>signup</span></a> to view and share memes</li>
+    <div class="guide">
+      <% if(!currentUser){ %>
+      <li class="loginorsignup">
+        <a href="/user/login"><span>login</span> </a>or
+        <a href="/user/signup"><span>signup</span></a> to view and share memes
+      </li>
       <% }else{ %>
-    <h2>User Guide</h2>
-    <li>You can view others' memes in the right box.</li>
-    <li>You can send meme using bottom chat box.</li>
-    <li>
-      I'm still learning, so this site isn't as polished as WhatsApp. Please
-      refresh the page often to see new messages.
-    </li>
-    <li>Only for NSUT-ians.</li>
-    <li>Have Fun.</li>
-    <% } %>
-  </div>
+      <h2>User Guide</h2>
+      <li>You can view others' memes in the right box.</li>
+      <li>You can send meme using bottom chat box.</li>
+      <li>
+        I'm still learning, so this site isn't as polished as WhatsApp. Please
+        refresh the page often to see new messages.
+      </li>
+      <li>Only for NSUT-ians.</li>
+      <li>Have Fun.</li>
+      <% } %>
+    </div>
 
-  <div class="chat">
-    <% if(!currentUser){ %>
-      <div class="blur"> <span class="green">S</span>ignup Or <span class="green">L</span>ogIn to <br><span class="green">C</span>ontinue<span class="green"> &rarr;</span>
+    <div class="chat">
+      <% if(!currentUser){ %>
+      <div class="blur">
+        <span class="green">S</span>ignup Or <span class="green">L</span>ogIn to
+        <br /><span class="green">C</span>ontinue<span class="green">
+          &rarr;</span
+        >
       </div>
-        <% }else{%>
-        <h4>Create the Laughs!</h4>
-        <form action="/chat" method="post" enctype="multipart/form-data">
-          <input type="text" placeholder="Chat Here !" name="chat" id="chat" />
-          <div>
-            <label for="file-upload" class="custom-file-upload">
-              !! Upload Meme !!
-            </label>
-            <input id="file-upload" name="image" type="file" />
-          </div>
-          <button class="send">
-            Send &rarr;
-            <div class="layer"></div>
-          </button>
-          <% } %>
-    </form>
-  </div>
-</body>
+      <% }else{%>
+      <h4>Create the Laughs!</h4>
+      <form action="/chat" method="post" enctype="multipart/form-data">
+        <input type="text" placeholder="Chat Here !" name="chat" id="chat" />
+        <div>
+          <label for="file-upload" class="custom-file-upload">
+            !! Upload Meme !!
+          </label>
+          <input id="file-upload" name="image" type="file" />
+        </div>
+        <button class="send send-msg">
+          Send &rarr;
+          <div class="layer"></div>
+        </button>
+        <% } %>
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket =io();
+      document.querySelector(".send-msg").addEventListener("click",()=>{
+        let msg = document.querySelector("#chat").value;
+        socket.emit("new-msg",[msg,'<%= currentUser.user %>']);
+      })
+      socket.on("msg",(msg)=>{
+        let newElem=document.createElement("div");
+        newElem.innerHTML=`<div class="card-header">
+          <img class="avatar" src="" alt="" />
+          <div class="username">${msg[1]}</div>
+        </div>
+        <div class="card-main">
+          <p class="User-msg">Message : ${msg[0]}</p>
+          <button class="refresh">See Attested Meme!</button>
+        </div>`;
+        newElem.classList.add("card");
+        document.querySelector(".meme").prepend(newElem);
+        document.querySelector(".refresh").addEventListener("click",()=>{
+          document.location.reload();
+        })
+
+      })
+      
+    </script>
+  </body>
+

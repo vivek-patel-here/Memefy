@@ -3,10 +3,14 @@ if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
+const http =require("http")
 const express = require("express");
-const methodOverride = require("method-override");
 const app = express();
+const server = http.createServer(app);
+const {Server}=require("socket.io");
+const io = new Server(server);
 const path = require("path");
+const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const { main } = require("./utils/connectDB.js");
 const chatRoute = require("./Routes/chat.js");
@@ -74,6 +78,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//socket.io
+io.on("connection",(socket)=>{
+  socket.on("new-msg",(msg)=>{
+    io.emit("msg",msg)
+  })
+})
+
 
 //redirecting to home page
 app.get("/", (req, res) => {
@@ -99,6 +110,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(8080, () => {
+server.listen(8080, () => {
   console.log("App is listening at port 8080");
 });
+

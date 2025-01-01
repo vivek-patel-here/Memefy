@@ -6,7 +6,6 @@ const {upload}=require("../utils/multerStorage.js")
 const {ValidateChatSchema}=require("../schemas/chat.js")
 const Wrap =require("../utils/Errorhandler.js")
 
-
 router.get("/",Wrap(async(req,res)=>{
     let chats =await Chat.find().populate("postedBy");
     res.render("chat.ejs",{chats:chats});

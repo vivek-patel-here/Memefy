@@ -99,7 +99,7 @@ nav>div{
 }
 
 /* home */
-.meme{
+.boundary{
     border:1px solid black;
     width: 60vw;
     height: 80vh;
@@ -107,24 +107,29 @@ nav>div{
     left: 35%;
     bottom: 5%;
     border-radius: 10px;
-    gap: 3vh;
     overflow-y: auto;
     overflow-x: hidden;
+}
+.meme{
+    width: 60vw;
+    height: 80vh;
+    gap: 3vh;
     display:flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.meme::-webkit-scrollbar{
+.boundary::-webkit-scrollbar{
     appearance: none;
     display: none;
 }
 
-.meme>h2{
+
+.boundary>h2{
     position:sticky;
     top: 0;
     font-weight: 500;
-    height: 5vh;
+    height: 10vh;
     width: 100%;
     background-color: white;
     padding-top: 3vh;
@@ -132,10 +137,11 @@ nav>div{
     z-index: 10;
 }
 
+
 .meme .card{
     height: 80%;
     width: 48%;
-    margin: 0px 0.5vw;
+    margin: 1.5vh 0.5vw;
     border: 1px solid #00EB8F;
     border-radius: 10px;
 }
@@ -227,7 +233,7 @@ nav>div{
     height: 35vh;
     position: absolute;
     bottom:5%;
-    overflow: hidden;
+    overflow-x: hidden;
     left: 3%;
     border-radius: 10px;
     display: flex;
@@ -293,13 +299,24 @@ input[type="file"] {
 }
 .send{
     width: 7vw;
-    height: 5vh;
+    min-height: 5vh;
     border: 1px solid #00EB8F;
     color: #00EB8F;
     border-radius: 25px;
     position: relative;
     overflow: hidden;
     background-color: transparent;
+    cursor: pointer;
+}
+.refresh{
+    width: 12vw;
+    min-height: 5vh;
+    border: 1px solid rgb(255, 187, 0);
+    color: rgb(255, 187, 0);
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
     cursor: pointer;
 }
 .layer{
